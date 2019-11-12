@@ -3,6 +3,11 @@ const _ = require('lodash')
 
 const deleteGitBranch = (projectPath) => {
   shell.cd(projectPath)
+  const currentBranchInfo = shell.exec('git symbolic-ref --short -q HEAD')
+  const currentBranch = currentBranchInfo.stdout.toString().replace(/\s+/g, '')
+  if (!['master', 'develop'].includes(currentBranch)) {
+    throw new Error('Current branch is not develop or master')
+  }
   const branchArr = shell.exec('git branch -a').stdout.toString().split(/\s+/g)
   branchArr.pop()
   branchArr.shift()
