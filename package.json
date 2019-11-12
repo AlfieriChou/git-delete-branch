@@ -1,0 +1,13 @@
+{
+  "name": "git-delete-branch",
+  "version": "1.0.0",
+  "description": "Delete local git branch.",
+  "main": "index.js",
+  "repository": "https://github.com/AlfieriChou/git-delete-branch",
+  "author": "AlfieriChou <alfierichou@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "shelljs": "^0.8.3"
+  }
+}
