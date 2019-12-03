@@ -16,7 +16,7 @@ const deleteGitBranch = (projectPath) => {
   })
   branchArr.reduce(async (promise, branch) => {
     await promise
-    if (branch.match(/develop|master|plugin/)) {
+    if (branch.match(/develop|master|plugin|HEAD/)) {
       return
     }
     if (branch.match(/origin/)) {
