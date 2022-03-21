@@ -1,7 +1,7 @@
 const shell = require('shelljs')
 const _ = require('lodash')
 
-const deleteGitBranch = (projectPath) => {
+const deleteGitBranch = async (projectPath) => {
   shell.cd(projectPath)
   const currentBranchInfo = shell.exec('git symbolic-ref --short -q HEAD')
   const currentBranch = currentBranchInfo.stdout.toString().replace(/\s+/g, '')
@@ -9,7 +9,7 @@ const deleteGitBranch = (projectPath) => {
     throw new Error('Current branch is not develop or master')
   }
   const branchArr = shell.exec('git branch -a').stdout.toString().split(/\s+/g)
-  branchArr
+  await branchArr
     .filter(branch => !['*', '', '->'].includes(branch))
     .reduce(async (promise, branch) => {
       await promise
