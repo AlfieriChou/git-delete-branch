@@ -6,7 +6,7 @@ const deleteGitBranch = async (projectPath) => {
   const currentBranchInfo = shell.exec('git symbolic-ref --short -q HEAD')
   const currentBranch = currentBranchInfo.stdout.toString().replace(/\s+/g, '')
   if (!['master', 'develop'].includes(currentBranch)) {
-    throw new Error('Current branch is not develop or master')
+    shell.exec('git checkout develop')
   }
   const branchArr = shell.exec('git branch -a').stdout.toString().split(/\s+/g)
   await branchArr
